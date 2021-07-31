@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      DL Cup: The Official Website of AAiT's Department League Cup hosted by 3rd
+      year Students
+    </title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- Normalize css -->
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css" />
+
+    <link rel="stylesheet" href="./updated-style.css" />
+    <link rel="stylesheet" href="./updated-table.css" />
+    <style>
+      .modal-container {
+        position: fixed;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: rgb(33, 33, 33, 0.7);
+        display: none;
+        grid-template-rows: 1fr !important;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .modal {
+        height: 75vh;
+        width: 400px;
+        background: white;
+        position: relative;
+        overflow-y: scroll;
+      }
+
+      .close-button {
+        position: absolute;
+        padding: 1rem 1.5rem;
+        background: var(--cool-color);
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        font-family: sans-serif;
+        right: 0.5rem;
+        border: none;
+      }
+
+      .static {
+        overflow: hidden;
+      }
+    </style>
+
+    <style>
+      @media screen and (max-width: 1200px) {
+        .grid-container {
+          height: unset;
+          grid-template-columns: 1fr;
+          grid-gap: 5rem;
+        }
+
+        .stats {
+          grid-template-columns: repeat(3, minmax(300px, 30%));
+          grid-template-rows: 1fr;
+          overflow-y: visible;
+          justify-content: center;
+        }
+
+        .stats > div {
+          transform: skewY(-10deg);
+        }
+
+        .stats .more-coming-soon {
+          display: block;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        .grid-container {
+          grid-template-columns: 1fr;
+        }
+
+        html {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <h1>Department League Cup</h1>
+      </div>
+    </header>
+    <!-- <nav>
+      <a href="#">About</a>
+      <a href="#">Table</a>
+      <a href="#">Stats</a>
+    </nav> -->
+    <main>
+      <div class="grid-container">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Last 5</th>
+                <th id="Pts" title="Total Points">Points</th>
+                <th id="Pl" title="Games Played">Played</th>
+                <th id="W">Won</th>
+                <th id="D">Drawn</th>
+                <th id="L">Lost</th>
+                <th><abbr title="Goals for">GF</abbr></th>
+                <th><abbr title="Goals against">GA</abbr></th>
+                <th><abbr title="Goal Difference">GD</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="IT"><span>IT</span><i class="fas fa-minus"></i></td>
+                <td>
+                  <i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i>
+                </td>
+                <td>15</td>
+                <td>5</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>23</td>
+                <td>7</td>
+                <td>16</td>
+              </tr>
+              <tr>
+                <td id="Bio">
+                  <span>Biomed</span> <i class="fas fa-caret-up"></i>
+                </td>
+                <td>
+                  <i class="fas fa-check-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i>
+                </td>
+                <td>12</td>
+                <td>6</td>
+                <td>4</td>
+                <td>0</td>
+                <td>2</td>
+                <td>23</td>
+                <td>10</td>
+                <td>13</td>
+              </tr>
+              <tr>
+                <td id="ElecC">
+                  <span>Elec C</span> <i class="fas fa-caret-down"></i>
+                </td>
+                <td>
+                  <i class="fas fa-minus-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i>
+                </td>
+                <td>10</td>
+                <td>5</td>
+                <td>3</td>
+                <td>1</td>
+                <td>1</td>
+                <td>13</td>
+                <td>8</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td id="Che">
+                  <span>Chemical</span> <i class="fas fa-caret-down"></i>
+                </td>
+                <td>
+                  <i class="fas fa-times-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-minus-circle"></i>
+                  <i class="fas fa-times-circle"></i>
+                </td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+                <td>1</td>
+                <td>2</td>
+                <td>16</td>
+                <td>16</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td id="Soft">
+                  <span>Software</span> <i class="fas fa-minus"></i>
+                </td>
+                <td>
+                  <i class="fas fa-times-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-times-circle"></i>
+                </td>
+                <td>9</td>
+                <td>5</td>
+                <td>3</td>
+                <td>0</td>
+                <td>2</td>
+                <td>17</td>
+                <td>7</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td id="Mech">
+                  <span>Mechanical</span> <i class="fas fa-minus"></i>
+                </td>
+                <td>
+                  <i class="fas fa-minus-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-minus-circle"></i
+                  ><i class="fas fa-times-circle"></i>
+                </td>
+                <td>8</td>
+                <td>5</td>
+                <td>2</td>
+                <td>2</td>
+                <td>1</td>
+                <td>11</td>
+                <td>7</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td id="Civ">
+                  <span>Civil</span> <i class="fas fa-minus"></i>
+                </td>
+                <td>
+                  <i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-check-circle"></i>
+                </td>
+                <td>6</td>
+                <td>5</td>
+                <td>2</td>
+                <td>0</td>
+                <td>3</td>
+                <td>11</td>
+                <td>15</td>
+                <td>-4</td>
+              </tr>
+              <tr>
+                <td id="ElecB1">
+                  <span>Elec B1</span> <i class="fas fa-minus"></i>
+                </td>
+                <td>
+                  <i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-check-circle"></i
+                  ><i class="fas fa-times-circle"></i>
+                </td>
+                <td>3</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+                <td>4</td>
+                <td>14</td>
+                <td>28</td>
+                <td>-14</td>
+              </tr>
+              <tr>
+                <td id="ElecB2">
+                  <span>Elec B2</span> <i class="fas fa-minus"></i>
+                </td>
+                <td>
+                  <i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i>
+                </td>
+                <td>0</td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>4</td>
+                <td>2</td>
+                <td>17</td>
+                <td>-15</td>
+              </tr>
+              <tr>
+                <td id="ElecA">
+                  <span>Elec A</span> <i class="fas fa-minus"></i>
+                </td>
+                <td>
+                  <i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i
+                  ><i class="fas fa-times-circle"></i>
+                </td>
+                <td>0</td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>4</td>
+                <td>5</td>
+                <td>21</td>
+                <td>-16</td>
+              </tr>
+            </tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+        <div class="stats">
+          <div class="top-scorers">
+            <h1>Top Scorers</h1>
+            <div>
+              <span>Beken</span>
+              <div class="details"><span>IT</span> <span>9</span></div>
+            </div>
+            <div>
+              <span>Tesfahun</span>
+              <div class="details"><span>Mech</span> <span>8</span></div>
+            </div>
+            <div>
+              <span>Amanuel T.</span>
+              <div class="details"><span>Chem</span> <span>7</span></div>
+            </div>
+            <div>
+              <span>Biruk</span>
+              <div class="details"><span>Elec C</span> <span>7</span></div>
+            </div>
+            <div>
+              <span>Bemnet</span>
+              <div class="details"><span>Soft</span> <span>5</span></div>
+            </div>
+            <!-- <div>
+              <span>Nebil</span>
+              <div class="details"><span>Elec B1</span> <span>5</span></div>
+            </div>
+            <div>
+              <span>Yonas</span>
+              <div class="details"><span>Biomed</span> <span>5</span></div>
+            </div>
+            <div>
+              <span>Yonathan</span>
+              <div class="details"><span>IT</span> <span>5</span></div>
+            </div> -->
+
+            <button class="big-btn" onclick="openModal()">View More...</button>
+          </div>
+          <div class="most-cleansheets">
+            <h1>Most Cleansheets</h1>
+            <div>
+              <span>Biomed</span>
+              <div class="details"><span>2</span></div>
+            </div>
+            <div>
+              <span>Elec C</span>
+              <div class="details"><span>1</span></div>
+            </div>
+            <div>
+              <span>IT</span>
+              <div class="details"><span>1</span></div>
+            </div>
+            <div>
+              <span>Soft</span>
+              <div class="details"><span>1</span></div>
+            </div>
+          </div>
+          <!-- <div class="more-coming-soon"></div> -->
+        </div>
+      </div>
+
+      <!-- <div class="about">
+        <div></div>
+      </div>
+      <div class="fixtures"></div> -->
+    </main>
+    <div class="modal-container stats">
+      <div class="modal">
+        <button onclick="closeModal()" class="close-button">X</button>
+        <h1>Top Scorers</h1>
+        <div>
+          <span>Beken</span>
+          <div class="details"><span>IT</span> <span>9</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Tesfahun</span>
+          <div class="details"><span>Mech</span> <span>8</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Amanuel T.</span>
+          <div class="details"><span>Chem</span> <span>7</span></div>
+        </div>
+        <div>
+          <span>Biruk</span>
+          <div class="details"><span>Elec C</span> <span>7</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Bemnet</span>
+          <div class="details"><span>Soft</span> <span>5</span></div>
+        </div>
+        <div>
+          <span>Nebil</span>
+          <div class="details"><span>Elec B1</span> <span>5</span></div>
+        </div>
+        <div>
+          <span>Yonas</span>
+          <div class="details"><span>Biomed</span> <span>5</span></div>
+        </div>
+        <div>
+          <span>Yonathan</span>
+          <div class="details"><span>IT</span> <span>5</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Abenezer</span>
+          <div class="details"><span>Biomed</span> <span>4</span></div>
+        </div>
+        <div>
+          <span>Kevin</span>
+          <div class="details"><span>IT</span> <span>4</span></div>
+        </div>
+        <div>
+          <span>Mathias</span>
+          <div class="details"><span>Civil</span> <span>4</span></div>
+        </div>
+        <div>
+          <span>Michael</span>
+          <div class="details"><span>Biomed</span> <span>4</span></div>
+        </div>
+        <div>
+          <span>Sador</span>
+          <div class="details"><span>Biomed</span> <span>4</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Biniyam</span>
+          <div class="details"><span>Soft</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Biruk</span>
+          <div class="details"><span>Soft</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Chalchisa</span>
+          <div class="details"><span>Elec B1</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Daniel</span>
+          <div class="details"><span>Elec B1</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Mikias</span>
+          <div class="details"><span>Elec A</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Temesgen</span>
+          <div class="details"><span>Elec C</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Yared</span>
+          <div class="details"><span>Biomed</span> <span>3</span></div>
+        </div>
+        <div>
+          <span>Yonas</span>
+          <div class="details"><span>Biomed</span> <span>3</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Abraham</span>
+          <div class="details"><span>Soft</span> <span>2</span></div>
+        </div>
+        <div>
+          <span>Aman A</span>
+          <div class="details"><span>Chem</span> <span>2</span></div>
+        </div>
+        <div>
+          <span>Bethel</span>
+          <div class="details"><span>Biomed</span> <span>2</span></div>
+        </div>
+        <div>
+          <span>Dawit</span>
+          <div class="details"><span>IT</span> <span>2</span></div>
+        </div>
+        <div>
+          <span>Fasil</span>
+          <div class="details"><span>Mech</span> <span>2</span></div>
+        </div>
+        <div>
+          <span>Kaleb</span>
+          <div class="details"><span>Biomed</span> <span>2</span></div>
+        </div>
+        <div>
+          <span>Nahom</span>
+          <div class="details"><span>Soft</span> <span>2</span></div>
+        </div>
+
+        <br />
+
+        <div>
+          <span>Nathnael</span>
+          <div class="details"><span>Civil</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Finihas</span>
+          <div class="details"><span>Civil</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Hannibal</span>
+          <div class="details"><span>Civil</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Kassahun</span>
+          <div class="details"><span>Civil</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Mikiyas</span>
+          <div class="details"><span>Biomed</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Matiyas</span>
+          <div class="details"><span>Biomed</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Yonathan</span>
+          <div class="details"><span>Biomed</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Haben</span>
+          <div class="details"><span>IT</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Tekle</span>
+          <div class="details"><span>IT</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Zekarias</span>
+          <div class="details"><span>IT</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Kalab</span>
+          <div class="details"><span>Elec B1</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Milkiays</span>
+          <div class="details"><span>Elec B1</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Natnael</span>
+          <div class="details"><span>Soft</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Wase</span>
+          <div class="details"><span>Soft</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Habtamu</span>
+          <div class="details"><span>Chem</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Lingerew</span>
+          <div class="details"><span>Chem</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Yeabsira</span>
+          <div class="details"><span>Chem</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Natnael</span>
+          <div class="details"><span>Elec A</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Ephrem</span>
+          <div class="details"><span>Elec A</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Misgana</span>
+          <div class="details"><span>Elec C</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Abenezer</span>
+          <div class="details"><span>Elec C</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Kidus</span>
+          <div class="details"><span>Elec C</span> <span>1</span></div>
+        </div>
+
+        <div>
+          <span>Henok</span>
+          <div class="details"><span>Elec B2</span> <span>1</span></div>
+        </div>
+        <div>
+          <span>Dawit</span>
+          <div class="details"><span>Elec B2</span> <span>1</span></div>
+        </div>
+      </div>
+    </div>
+    <footer>DL CUP Productions &copy;2021</footer>
+  </body>
+  <script>
+    let modal = document.querySelector(".modal-container");
+    let body = document.querySelector("body");
+
+    window.addEventListener('click', function(e){
+      if (e.target == modal) {
+        closeModal();
+      }
+    })
+
+    function openModal() {
+      modal.style.display = "grid";
+      body.classList.add("static");
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      body.classList.remove("static");
+    }
+  </script>
+</html>
